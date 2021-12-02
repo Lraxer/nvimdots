@@ -42,6 +42,8 @@ local disable_distribution_plugins = function()
     vim.g.loaded_netrwSettings = 1
     vim.g.loaded_netrwFileHandlers = 1
     vim.g.did_load_filetypes = 1
+
+    vim.g.better_escape_shortcut = 'jj'
 end
 
 local leader_map = function()
