@@ -44,6 +44,6 @@ completion["windwp/nvim-autopairs"] = {
     after = "nvim-cmp",
     config = conf.autopairs
 }
-completion["github/copilot.vim"] = {opt = true, cmd = "Copilot"}
+-- completion["github/copilot.vim"] = {opt = true, cmd = "Copilot"}
 
 return completion
