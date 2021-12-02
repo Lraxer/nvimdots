@@ -1,0 +1,47 @@
+set encoding=utf-8
+
+" set mapleader ASAP
+let mapleader=" "
+
+" show relative line number
+set rnu
+" match ()
+set showmatch
+" tab=4 blankspaces
+set tabstop=4
+" auto indent length=4
+set shiftwidth=4
+
+set showcmd
+
+set autoindent
+
+" show tabs and blankspaces
+"set listchars=tab:>
+
+" show current position of cursor
+set ruler
+
+set nocompatible
+set hidden
+
+" share clipboard with system
+set clipboard+=unnamedplus
+
+" show file name constantly
+set laststatus=2
+
+set hlsearch
+
+set updatetime=100
+
+" allow netrw to run
+set nocp
+filetype plugin on
+
+syntax on
+
+inoremap jj <esc>
+
+nnoremap <esc><esc> :noh<return><esc>
+
