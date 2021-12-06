@@ -404,7 +404,7 @@ The leader key is `,`.
 |                        add project                        |    `<leader>fp`then`<C-A>`     |
 |                      delete project                       |    `<leader>fp`then`<C-D>`     |
 |                                                           |                                |
-|                    escape insert mode                     |              `jk`              |
+|                    escape insert mode                     |              `jj`              |
 |                      format manually                      |           `<C-A-l>`            |
 |                back to last cursor's place                |            `<C-O>`             |
 |                    preview definition                     |              `gd`              |
