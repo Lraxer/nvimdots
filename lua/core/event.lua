@@ -99,7 +99,6 @@ function autocmd.load_autocmds()
 			},
 		},
 	}
-
 	autocmd.nvim_create_augroups(definitions)
 end
 
