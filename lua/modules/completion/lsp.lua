@@ -309,8 +309,8 @@ flake8 = vim.tbl_extend("force", flake8, {
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	c = { formatter = clangfmt, linter = clangtidy },
-	cpp = { formatter = clangfmt, linter = clangtidy },
+	-- c = { formatter = clangfmt, linter = clangtidy },
+	-- cpp = { formatter = clangfmt, linter = clangtidy },
 	go = { formatter = goimports, linter = staticcheck },
 	python = { formatter = black },
 	vue = { formatter = prettier },
