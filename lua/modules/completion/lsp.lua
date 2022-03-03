@@ -312,7 +312,7 @@ efmls.setup({
 	-- c = { formatter = clangfmt, linter = clangtidy },
 	-- cpp = { formatter = clangfmt, linter = clangtidy },
 	go = { formatter = goimports, linter = staticcheck },
-	python = { formatter = black },
+	python = { formatter = black,linter=flake8},
 	vue = { formatter = prettier },
 	typescript = { formatter = prettier, linter = eslint },
 	javascript = { formatter = prettier, linter = eslint },
