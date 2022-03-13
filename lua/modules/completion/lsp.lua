@@ -304,13 +304,17 @@ flake8 = vim.tbl_extend("force", flake8, {
 	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
 })
 
+clangfmt = vim.tbl_extend("force", clangfmt, {
+	formatCommand = "clang-format ${INPUT}",
+})
+
 -- Setup formatter and linter for efmls here
 
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	-- c = { formatter = clangfmt, linter = clangtidy },
-	-- cpp = { formatter = clangfmt, linter = clangtidy },
+	c = { formatter = clangfmt }, -- linter = clangtidy },
+	cpp = { formatter = clangfmt }, -- linter = clangtidy },
 	go = { formatter = goimports, linter = staticcheck },
 	python = { formatter = black,linter=flake8},
 	vue = { formatter = prettier },
