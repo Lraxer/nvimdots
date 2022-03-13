@@ -260,6 +260,10 @@ flake8 = vim.tbl_extend("force", flake8, {
 	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
 })
 
+clangfmt = vim.tbl_extend("force", clangfmt, {
+	formatCommand = "clang-format ${INPUT}",
+})
+
 -- Setup formatter and linter for efmls here
 
 efmls.setup({
