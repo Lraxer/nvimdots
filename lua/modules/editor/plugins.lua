@@ -44,11 +44,6 @@ editor["mfussenegger/nvim-ts-hint-textobject"] = {
 	opt = true,
 	after = "nvim-treesitter",
 }
-editor["SmiteshP/nvim-gps"] = {
-	opt = true,
-	after = "nvim-treesitter",
-	config = conf.nvim_gps,
-}
 editor["windwp/nvim-ts-autotag"] = {
 	opt = true,
 	ft = { "html", "xml" },
