@@ -74,7 +74,6 @@ function config.nvim_treesitter()
 		},
 		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },
-		context = { enable = true, throttle = true },
 	})
 	require("nvim-treesitter.install").prefer_git = true
 	local parsers = require("nvim-treesitter.parsers").get_parser_configs()
@@ -206,13 +205,13 @@ function config.dap()
 	local dap = require("dap")
 	local dapui = require("dapui")
 
-	dap.listeners.after.event_initialized["dapui"] = function()
+	dap.listeners.after.event_initialized["dapui_config"] = function()
 		dapui.open()
 	end
-	dap.listeners.after.event_terminated["dapui"] = function()
+	dap.listeners.after.event_terminated["dapui_config"] = function()
 		dapui.close()
 	end
-	dap.listeners.after.event_exited["dapui"] = function()
+	dap.listeners.after.event_exited["dapui_config"] = function()
 		dapui.close()
 	end
 
