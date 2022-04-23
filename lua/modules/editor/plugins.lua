@@ -2,10 +2,22 @@ local editor = {}
 local conf = require("modules.editor.config")
 
 editor["junegunn/vim-easy-align"] = { opt = true, cmd = "EasyAlign" }
-editor["itchyny/vim-cursorword"] = {
-	opt = true,
-	event = { "BufReadPre", "BufNewFile" },
-	config = conf.vim_cursorwod,
+editor["RRethy/vim-illuminate"] = {
+	event = "BufRead",
+	config = function()
+		vim.g.Illuminate_highlightUnderCursor = 0
+		vim.g.Illuminate_ftblacklist = {
+			"help",
+			"dashboard",
+			"alpha",
+			"packer",
+			"norg",
+			"DoomInfo",
+			"NvimTree",
+			"Outline",
+			"toggleterm",
+		}
+	end,
 }
 editor["terrortylor/nvim-comment"] = {
 	opt = false,
@@ -77,7 +89,7 @@ editor["karb94/neoscroll.nvim"] = {
 	config = conf.neoscroll,
 }
 editor["vimlab/split-term.vim"] = { opt = true, cmd = { "Term", "VTerm" } }
-editor["akinsho/nvim-toggleterm.lua"] = {
+editor["akinsho/toggleterm.nvim"] = {
 	opt = true,
 	event = "BufRead",
 	config = conf.toggleterm,
@@ -100,9 +112,10 @@ editor["rcarriga/nvim-dap-ui"] = {
 	requires = {
 		{ "mfussenegger/nvim-dap", config = conf.dap },
 		{
-			"Pocco81/DAPInstall.nvim",
+			"Pocco81/dap-buddy.nvim",
 			opt = true,
 			cmd = { "DIInstall", "DIUninstall", "DIList" },
+			commit = "24923c3819a450a772bb8f675926d530e829665f",
 			config = conf.dapinstall,
 		},
 	},
