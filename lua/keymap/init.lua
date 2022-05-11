@@ -41,7 +41,7 @@ local plug_map = {
 	["v|<leader>ca"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
 	["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
 	["n|gD"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
-	["n|gh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
+	["n|gh"] = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
 	["n|<A-d>"] = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
 	["t|<A-d>"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").toggle()]]):with_noremap():with_silent(),
 	["t|<A-S-d>"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").exit()]]):with_noremap():with_silent(),
@@ -53,7 +53,7 @@ local plug_map = {
 	["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
 	["n|gR"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent(),
 	["n|<leader>cd"] = map_cr("TroubleToggle document_diagnostics"):with_noremap():with_silent(),
-	["n|<leader>cw"] = map_cr("TroubleToggle lsp_workspace_diagnostics"):with_noremap():with_silent(),
+	["n|<leader>cw"] = map_cr("TroubleToggle workspace_diagnostics"):with_noremap():with_silent(),
 	["n|<leader>cq"] = map_cr("TroubleToggle quickfix"):with_noremap():with_silent(),
 	["n|<leader>cl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent(),
 	-- Plugin nvim-tree

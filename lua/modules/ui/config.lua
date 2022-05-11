@@ -123,6 +123,31 @@ function config.lualine()
 		filetypes = { "dapui_watches" },
 	}
 
+	local function python_venv()
+		local function env_cleanup(venv)
+			if string.find(venv, "/") then
+				local final_venv = venv
+				for w in venv:gmatch("([^/]+)") do
+					final_venv = w
+				end
+				venv = final_venv
+			end
+			return venv
+		end
+
+		if vim.bo.filetype == "python" then
+			local venv = os.getenv("CONDA_DEFAULT_ENV")
+			if venv then
+				return string.format("%s", env_cleanup(venv))
+			end
+			venv = os.getenv("VIRTUAL_ENV")
+			if venv then
+				return string.format("%s", env_cleanup(venv))
+			end
+		end
+		return ""
+	end
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
@@ -146,10 +171,9 @@ function config.lualine()
 				},
 			},
 			lualine_y = {
-				{
-					"filetype",
-					"encoding",
-				},
+				{ "filetype", colored = true, icon_only = true },
+				{ python_venv },
+				{ "encoding" },
 				{
 					"fileformat",
 					icons_enabled = true,
