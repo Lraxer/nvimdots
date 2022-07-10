@@ -72,6 +72,33 @@ function config.nvim_treesitter()
 	end
 end
 
+function config.illuminate()
+	vim.g.Illuminate_highlightUnderCursor = 0
+	vim.g.Illuminate_ftblacklist = {
+		"help",
+		"dashboard",
+		"alpha",
+		"packer",
+		"norg",
+		"DoomInfo",
+		"NvimTree",
+		"Outline",
+		"toggleterm",
+	}
+end
+
+function config.nvim_comment()
+	require("nvim_comment").setup({
+		hook = function()
+			require("ts_context_commentstring.internal").update_commentstring()
+		end,
+	})
+end
+
+function config.hop()
+	require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+end
+
 function config.matchup()
 	vim.cmd([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
 end
@@ -377,6 +404,19 @@ function config.imselect()
 			\ }
 			]])
 	end
+end
+
+function config.better_escape()
+	require("better_escape").setup({
+		mapping = { "jk", "jj" }, -- a table with mappings to use
+		timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+		clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+		keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+		-- example(recommended)
+		-- keys = function()
+		--   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
+		-- end,
+	})
 end
 
 return config
