@@ -253,15 +253,17 @@ function config.catppuccin()
 			cmp = true,
 			dap = { enabled = true, enable_ui = true },
 			notify = true,
-			symbols_outline = true,
+			symbols_outline = false,
 			coc_nvim = false,
 			leap = false,
 			neotree = { enabled = false, show_root = true, transparent_panel = false },
-			telekasten = true,
+			telekasten = false,
 			mini = false,
-			aerial = false,
+			aerial = true,
 			vimwiki = true,
 			beacon = false,
+			navic = false,
+			overseer = false,
 		},
 		color_overrides = {
 			mocha = {
@@ -313,6 +315,15 @@ function config.catppuccin()
 				LspDiagnosticsHint = { fg = cp.rosewater },
 				LspDiagnosticsVirtualTextHint = { fg = cp.rosewater },
 				LspDiagnosticsUnderlineHint = { sp = cp.rosewater },
+
+				-- For Ts-Rainbow
+				rainbowcol1 = { bg = cp.none },
+				rainbowcol2 = { bg = cp.none },
+				rainbowcol3 = { bg = cp.none },
+				rainbowcol4 = { bg = cp.none },
+				rainbowcol5 = { bg = cp.none },
+				rainbowcol6 = { bg = cp.none },
+				rainbowcol7 = { bg = cp.none },
 
 				-- For treesitter.
 				TSField = { fg = cp.rosewater },
