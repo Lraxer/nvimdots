@@ -3,11 +3,10 @@ local formatting = require("modules.completion.formatting")
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
-vim.cmd([[packadd aerial.nvim]])
 vim.cmd([[packadd vim-illuminate]])
+vim.cmd([[packadd nvim-navic]])
 
 local nvim_lsp = require("lspconfig")
-local saga = require("lspsaga")
 local mason = require("mason")
 local mason_lsp = require("mason-lspconfig")
 
@@ -23,19 +22,10 @@ mason_lsp.setup({
 	},
 })
 
--- Override diagnostics symbol
-
-saga.init_lsp_saga({
-	error_sign = "",
-	warn_sign = "",
-	hint_sign = "",
-	infor_sign = "",
-})
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local function custom_attach(client)
+local function custom_attach(client, bufnr)
 	require("lsp_signature").on_attach({
 		bind = true,
 		use_lspsaga = false,
@@ -45,8 +35,8 @@ local function custom_attach(client)
 		hi_parameter = "Search",
 		handler_opts = { "double" },
 	})
-	require("aerial").on_attach(client)
 	require("illuminate").on_attach(client)
+	require("nvim-navic").attach(client, bufnr)
 end
 
 local function switch_source_header_splitcmd(bufnr, splitcmd)

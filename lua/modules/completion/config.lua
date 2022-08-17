@@ -4,12 +4,38 @@ function config.nvim_lsp()
 	require("modules.completion.lsp")
 end
 
-function config.lightbulb()
-	vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
-end
+function config.lspsaga()
+	-- Set icons for sidebar.
+	local diagnostic_icons = {
+		Error = " ",
+		Warn = " ",
+		Info = " ",
+		Hint = " ",
+	}
+	for type, icon in pairs(diagnostic_icons) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl })
+	end
 
-function config.aerial()
-	require("aerial").setup({})
+	local kind = require("lspsaga.lspkind")
+	kind[2][2] = " "
+	kind[4][2] = " "
+	kind[5][2] = "ﴯ "
+	kind[6][2] = " "
+	kind[7][2] = "ﰠ "
+	kind[8][2] = " "
+	kind[9][2] = " "
+	kind[10][2] = " "
+	kind[11][2] = " "
+	kind[12][2] = " "
+	kind[13][2] = " "
+	kind[15][2] = " "
+	kind[16][2] = " "
+	kind[23][2] = " "
+	kind[26][2] = " "
+
+	local saga = require("lspsaga")
+	saga.init_lsp_saga()
 end
 
 function config.cmp()
@@ -215,52 +241,6 @@ function config.autopairs()
 			},
 		})
 	)
-end
-
-function config.bqf()
-	vim.cmd([[
-    hi BqfPreviewBorder guifg=#F2CDCD ctermfg=71
-    hi link BqfPreviewRange Search
-]])
-
-	require("bqf").setup({
-		auto_enable = true,
-		auto_resize_height = true, -- highly recommended enable
-		preview = {
-			win_height = 12,
-			win_vheight = 12,
-			delay_syntax = 80,
-			border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-			should_preview_cb = function(bufnr, qwinid)
-				local ret = true
-				local bufname = vim.api.nvim_buf_get_name(bufnr)
-				local fsize = vim.fn.getfsize(bufname)
-				if fsize > 100 * 1024 then
-					-- skip file size greater than 100k
-					ret = false
-				elseif bufname:match("^fugitive://") then
-					-- skip fugitive buffer
-					ret = false
-				end
-				return ret
-			end,
-		},
-		-- make `drop` and `tab drop` to become preferred
-		func_map = {
-			drop = "o",
-			openc = "O",
-			split = "<C-s>",
-			tabdrop = "<C-t>",
-			tabc = "",
-			ptogglemode = "z,",
-		},
-		filter = {
-			fzf = {
-				action_for = { ["ctrl-s"] = "split", ["ctrl-t"] = "tab drop" },
-				extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-			},
-		},
-	})
 end
 
 function config.mason_install()
