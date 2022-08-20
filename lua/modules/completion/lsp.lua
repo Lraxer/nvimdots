@@ -3,7 +3,6 @@ local formatting = require("modules.completion.formatting")
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
-vim.cmd([[packadd vim-illuminate]])
 vim.cmd([[packadd nvim-navic]])
 
 local nvim_lsp = require("lspconfig")
@@ -35,7 +34,6 @@ local function custom_attach(client, bufnr)
 		hi_parameter = "Search",
 		handler_opts = { "double" },
 	})
-	require("illuminate").on_attach(client)
 	require("nvim-navic").attach(client, bufnr)
 end
 
@@ -106,12 +104,18 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 			capabilities = copy_capabilities,
 			single_file_support = true,
 			on_attach = custom_attach,
-			args = {
+			cmd = {
+				"clangd",
 				"--background-index",
-				"-std=c++20",
 				"--pch-storage=memory",
+				-- You MUST set this arg ↓ to your clangd executable location (if not included)!
+				"--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
 				"--clang-tidy",
-				"--suggest-missing-includes",
+				"--all-scopes-completion",
+				"--cross-file-rename",
+				"--completion-style=detailed",
+				"--header-insertion-decorators",
+				"--header-insertion=iwyu",
 			},
 			commands = {
 				ClangdSwitchSourceHeader = {
@@ -228,7 +232,6 @@ efmls.init({
 -- Require `efmls-configs-nvim`'s config here
 
 local vint = require("efmls-configs.linters.vint")
-local clangtidy = require("efmls-configs.linters.clang_tidy")
 local eslint = require("efmls-configs.linters.eslint")
 local flake8 = require("efmls-configs.linters.flake8")
 local shellcheck = require("efmls-configs.linters.shellcheck")
@@ -265,8 +268,8 @@ local shfmt = require("efmls-configs.formatters.shfmt")
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	c = { formatter = clangfmt, linter = clangtidy },
-	cpp = { formatter = clangfmt, linter = clangtidy },
+	c = { formatter = clangfmt },
+	cpp = { formatter = clangfmt },
 	python = { formatter = black },
 	vue = { formatter = prettier },
 	typescript = { formatter = prettier, linter = eslint },

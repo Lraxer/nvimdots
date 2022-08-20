@@ -3,6 +3,7 @@ local conf = require("modules.editor.config")
 
 editor["junegunn/vim-easy-align"] = { opt = true, cmd = "EasyAlign" }
 editor["RRethy/vim-illuminate"] = {
+	opt = true,
 	event = "BufReadPost",
 	config = conf.illuminate,
 }
@@ -23,7 +24,6 @@ editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
 editor["p00f/nvim-ts-rainbow"] = {
 	opt = true,
 	after = "nvim-treesitter",
-	event = "BufReadPost",
 }
 editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
 	opt = true,
