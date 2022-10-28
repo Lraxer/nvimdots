@@ -392,6 +392,8 @@ function config.lualine()
 		misc = require("modules.ui.icons").get("misc", true),
 	}
 
+	local lspsaga_symbolwinbar = require("lspsaga.symbolwinbar")
+
 	local function escape_status()
 		local ok, m = pcall(require, "better_escape")
 		return ok and m.waiting and icons.misc.EscapeST or ""
@@ -457,7 +459,7 @@ function config.lualine()
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			lualine_c = {},
+			lualine_c = { lspsaga_symbolwinbar.get_symbol_node },
 			lualine_x = {
 				{ escape_status },
 				{
