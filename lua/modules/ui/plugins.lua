@@ -12,6 +12,7 @@ ui["catppuccin/nvim"] = {
 ui["rcarriga/nvim-notify"] = {
 	opt = false,
 	config = conf.notify,
+	commit = "354e0ebb269d9e4feca073372431e8453f5f262a",
 }
 ui["hoob3rt/lualine.nvim"] = {
 	opt = true,
