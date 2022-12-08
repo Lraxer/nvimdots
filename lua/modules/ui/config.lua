@@ -414,6 +414,16 @@ function config.lualine()
 		end
 	end
 
+	-- you can use get_cwd in lualine_a/b/c/x/y/z section
+	local function get_cwd()
+		local cwd = vim.fn.getcwd()
+		local home = os.getenv("HOME")
+		if cwd:find(home, 1, true) == 1 then
+			cwd = "~" .. cwd:sub(#home + 1)
+		end
+		return icons.ui.RootFolderOpened .. cwd
+	end
+
 	local mini_sections = {
 		lualine_a = { "filetype" },
 		lualine_b = {},
@@ -465,9 +475,9 @@ function config.lualine()
 			section_separators = { left = "", right = "" },
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = { { "mode" } },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			lualine_c = { lspsaga_symbolwinbar.get_symbol_node },
+			lualine_c = { { lspsaga_symbolwinbar.get_symbol_node } },
 			lualine_x = {
 				{ escape_status },
 				{
