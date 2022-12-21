@@ -2,8 +2,8 @@ local config = {}
 
 function config.telescope()
 	vim.api.nvim_command([[packadd sqlite.lua]])
+	vim.api.nvim_command([[packadd project.nvim]])
 	vim.api.nvim_command([[packadd telescope-fzf-native.nvim]])
-	vim.api.nvim_command([[packadd telescope-project.nvim]])
 	vim.api.nvim_command([[packadd telescope-frecency.nvim]])
 	vim.api.nvim_command([[packadd telescope-zoxide]])
 	vim.api.nvim_command([[packadd telescope-live-grep-args.nvim]])
@@ -80,7 +80,7 @@ function config.telescope()
 
 	require("telescope").load_extension("notify")
 	require("telescope").load_extension("fzf")
-	require("telescope").load_extension("project")
+	require("telescope").load_extension("projects")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("live_grep_args")
@@ -283,6 +283,23 @@ function config.legendary()
 			results_view = "float",
 			keep_contents = true,
 		},
+		sort = {
+			-- sort most recently used item to the top
+			most_recent_first = true,
+			-- sort user-defined items before built-in items
+			user_items_first = true,
+			frecency = {
+				-- the directory to store the database in
+				db_root = string.format("%s/legendary/", vim.fn.stdpath("data")),
+				-- the maximum number of timestamps for a single item
+				-- to store in the database
+				max_timestamps = 10,
+			},
+		},
+		-- Directory used for caches
+		cache_path = string.format("%s/legendary/", vim.fn.stdpath("cache")),
+		-- Log level, one of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
+		log_level = "info",
 	})
 
 	require("which-key").register({
@@ -360,6 +377,7 @@ function config.legendary()
 			d = "lsp: Preview definition",
 			D = "lsp: Goto definition",
 			h = "lsp: Show reference",
+			o = "lsp: Toggle outline",
 			r = "lsp: Rename",
 			s = "lsp: Signature help",
 			t = "lsp: Toggle trouble list",
