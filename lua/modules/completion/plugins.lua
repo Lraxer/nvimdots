@@ -29,8 +29,8 @@ completion["hrsh7th/nvim-cmp"] = {
 	config = conf.cmp,
 	event = "InsertEnter",
 	requires = {
-		{ "onsails/lspkind.nvim" },
-		{ "lukas-reineke/cmp-under-comparator" },
+		{ "onsails/lspkind.nvim", module = "lspkind" },
+		{ "lukas-reineke/cmp-under-comparator", module = "cmp-under-comparator" },
 		{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 		{ "hrsh7th/cmp-nvim-lsp", after = "cmp_luasnip" },
 		{ "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
@@ -62,6 +62,7 @@ completion["windwp/nvim-autopairs"] = {
 -- }
 -- completion["zbirenbaum/copilot-cmp"] = {
 -- 	after = "copilot.lua",
+-- 	module = "copilot_cmp",
 -- 	config = function()
 -- 		require("copilot_cmp").setup()
 -- 	end,
