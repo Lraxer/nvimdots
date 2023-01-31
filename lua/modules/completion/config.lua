@@ -70,7 +70,7 @@ function config.lspsaga()
 			virtual_text = false,
 		},
 		diagnostic = {
-			show_code_action = false,
+			show_code_action = true,
 			show_source = true,
 			jump_num_shortcut = true,
 			keys = {
@@ -101,7 +101,6 @@ function config.lspsaga()
 			},
 		},
 		symbol_in_winbar = {
-			in_custom = true,
 			enable = false,
 			separator = " " .. icons.ui.Separator,
 			hide_keyword = true,
