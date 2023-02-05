@@ -41,11 +41,15 @@ function config.lspsaga()
 		},
 		request_timeout = 3000,
 		finder = {
-			edit = { "o", "<CR>" },
-			vsplit = "s",
-			split = "i",
-			tabe = "t",
-			quit = { "q", "<ESC>" },
+			keys = {
+				jump_to = "e",
+				edit = { "o", "<CR>" },
+				vsplit = "s",
+				split = "i",
+				tabe = "t",
+				quit = { "q", "<ESC>" },
+				close_in_preview = "<ESC>",
+			},
 		},
 		definition = {
 			edit = "<C-c>o",
@@ -71,6 +75,7 @@ function config.lspsaga()
 		},
 		diagnostic = {
 			show_code_action = true,
+			border_follow = true,
 			show_source = true,
 			jump_num_shortcut = true,
 			keys = {
@@ -199,6 +204,16 @@ function config.cmp()
 	end
 
 	local compare = require("cmp.config.compare")
+	compare.lsp_scores = function(entry1, entry2)
+		local diff
+		if entry1.completion_item.score and entry2.completion_item.score then
+			diff = (entry2.completion_item.score * entry2.score) - (entry1.completion_item.score * entry1.score)
+		else
+			diff = entry2.score - entry1.score
+		end
+		return (diff < 0)
+	end
+
 	local lspkind = require("lspkind")
 	local cmp = require("cmp")
 
@@ -221,7 +236,7 @@ function config.cmp()
 				-- require("cmp_tabnine.compare"),
 				compare.offset,
 				compare.exact,
-				compare.score,
+				compare.lsp_scores,
 				require("cmp-under-comparator").under,
 				compare.kind,
 				compare.sort_text,
@@ -293,7 +308,7 @@ function config.cmp()
 end
 
 function config.luasnip()
-	local snippet_path = os.getenv("HOME") .. "/.config/nvim/my-snippets/"
+	local snippet_path = vim.fn.stdpath("config") .. "/my-snippets/"
 	if not vim.tbl_contains(vim.opt.rtp:get(), snippet_path) then
 		vim.opt.rtp:append(snippet_path)
 	end
