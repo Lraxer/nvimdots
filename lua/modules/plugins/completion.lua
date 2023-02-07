@@ -1,5 +1,4 @@
 local completion = {}
-local conf = require("modules.completion.config")
 
 completion["neovim/nvim-lspconfig"] = {
 	lazy = true,
