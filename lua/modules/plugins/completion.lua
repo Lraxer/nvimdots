@@ -5,18 +5,21 @@ completion["neovim/nvim-lspconfig"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("completion.lsp"),
 	dependencies = {
-		{ "creativenull/efmls-configs-nvim" },
+		{ "ray-x/lsp_signature.nvim" },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
-		{
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			config = require("completion.mason-tool-installer"),
-		},
 		{
 			"glepnir/lspsaga.nvim",
 			config = require("completion.lspsaga"),
 		},
-		{ "ray-x/lsp_signature.nvim" },
+		{
+			"jose-elias-alvarez/null-ls.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"jay-babu/mason-null-ls.nvim",
+			},
+			config = require("completion.null-ls"),
+		},
 	},
 }
 completion["hrsh7th/nvim-cmp"] = {
@@ -39,11 +42,16 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "f3fora/cmp-spell" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "kdheepak/cmp-latex-symbols" },
-		{
-			"windwp/nvim-autopairs",
-			config = require("completion.autopairs"),
-		},
+		{ "ray-x/cmp-treesitter" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
+		-- {
+		-- 	"jcdickinson/codeium.nvim",
+		-- 	dependencies = {
+		-- 		"nvim-lua/plenary.nvim",
+		-- 		"MunifTanjim/nui.nvim",
+		-- 	},
+		-- 	config = require("completion.codeium"),
+		-- },
 	},
 }
 -- completion["zbirenbaum/copilot.lua"] = {
