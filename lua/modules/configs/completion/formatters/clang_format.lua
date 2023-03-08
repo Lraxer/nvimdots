@@ -1,1 +1,1 @@
-return { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" }
+return { "-style={BasedOnStyle: LLVM, IndentWidth: 2, IndentAccessModifiers: false, AccessModifierOffset: -2}" }
