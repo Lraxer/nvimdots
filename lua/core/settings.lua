@@ -32,6 +32,10 @@ settings["palette_overwrite"] = {}
 ---@type string
 settings["colorscheme"] = "catppuccin"
 
+-- Set it to true if your terminal has transparent background.
+---@type boolean
+settings["transparent_background"] = false
+
 -- Set background color to use here.
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.
 -- Valid values are: `dark`, `light`.
@@ -79,12 +83,15 @@ settings["lsp_deps"] = {
 settings["null_ls_deps"] = {
 	"black",
 	"clang_format",
-	"editorconfig_checker",
 	"prettier",
 	"rustfmt",
 	"shfmt",
 	"stylua",
 	"vint",
 }
+
+-- Set the inline_diagnostic_virtual_text to false if they are annoying for you
+---@type boolean
+settings["inline_diagnostic_virtual_text"] = true
 
 return settings
