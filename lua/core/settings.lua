@@ -76,7 +76,7 @@ settings["lsp_deps"] = {
 	"html",
 	"jsonls",
 	"lua_ls",
-	"jedi_language_server",
+	"pylsp",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here
