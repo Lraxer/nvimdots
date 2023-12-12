@@ -63,7 +63,7 @@
   "persisted.nvim": { "branch": "main", "commit": "fc9f398393cc3bb0e4e81cb9f7c133cd2b21467f" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
-  "rainbow-delimiters.nvim": { "branch": "master", "commit": "cc5f3a00819b3bef2789f95443057613ed7c42f8" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "c1635c2429644bfd5044dff067a613952a9424b6" },
   "rust-tools.nvim": { "branch": "master", "commit": "0cc8adab23117783a0292a0c8a2fbed1005dc645" },
   "smartyank.nvim": { "branch": "master", "commit": "b048fec8c6b7d122adab6f78606057d59975ece7" },
   "sniprun": { "branch": "master", "commit": "7a8bc30fcf04fd4efec43be368f12eb4266fabf6" },
