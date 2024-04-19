@@ -102,11 +102,11 @@ settings["server_formatting_block_list"] = {
 settings["lsp_deps"] = {
 	"bashls",
 	"clangd",
-	"gopls",
 	"html",
 	"jsonls",
 	"lua_ls",
 	"pylsp",
+	-- "gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
