@@ -37,7 +37,7 @@ return {
 
 				-- Formatting
 				black = { enabled = true },
-				pyls_isort = { enabled = false },
+				pyls_isort = { enabled = true },
 				autopep8 = { enabled = false },
 				yapf = { enabled = false },
 			},
