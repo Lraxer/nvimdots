@@ -6,6 +6,7 @@ local map_callback = bind.map_callback
 local et = bind.escape_termcode
 
 local builtin_map = {
+	["i|jj"] = map_cmd("<ESC>"):with_noremap():with_silent():with_desc("switch from insert mode to normal mode"),
 	-- Builtin: save & quit
 	["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("edit: Save file"),
 	["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"),
