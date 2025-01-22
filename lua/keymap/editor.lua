@@ -7,7 +7,7 @@ local et = bind.escape_termcode
 
 local mappings = {
 	builtins = {
-        ["i|jj"] = map_cmd("<ESC>"):with_noremap():with_silent():with_desc("switch from insert mode to normal mode"),
+		["i|jj"] = map_cmd("<ESC>"):with_noremap():with_silent():with_desc("switch from insert mode to normal mode"),
 		-- Builtins: Save & Quit
 		["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("edit: Save file"),
 		["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"),
