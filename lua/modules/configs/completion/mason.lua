@@ -55,6 +55,7 @@ M.setup = function()
 						"-U",
 						"--disable-pip-version-check",
 						"python-lsp-black",
+						"python-lsp-isort",
 						"python-lsp-ruff",
 						"pylsp-rope",
 					},
