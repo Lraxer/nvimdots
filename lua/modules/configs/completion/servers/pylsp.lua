@@ -25,6 +25,7 @@ return {
 						-- Hint, Information, Warning, Error
 						F401 = "I",
 						E501 = "I",
+						F841 = "W",
 					},
 				},
 				flake8 = { enabled = false },

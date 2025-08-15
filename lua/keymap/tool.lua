@@ -100,8 +100,7 @@ local mappings = {
 
 		-- Plugin: telescope
 		["n|<C-p>"] = map_callback(function()
-				local search_backend = require("core.settings").search_backend
-				if search_backend == "fzf" then
+				if require("core.settings").search_backend == "fzf" then
 					local prompt_position = require("telescope.config").values.layout_config.horizontal.prompt_position
 					require("fzf-lua").keymaps({
 						fzf_opts = { ["--layout"] = prompt_position == "top" and "reverse" or "default" },
@@ -132,20 +131,17 @@ local mappings = {
 			:with_silent()
 			:with_desc("tool: Find patterns"),
 		["v|<leader>fs"] = map_callback(function()
-				local search_backend = require("core.settings").search_backend
-				if search_backend == "fzf" then
-					local default_opts = "--column --line-number --no-heading --color=always --smart-case"
-					local opts = vim.fn.getcwd() == vim_path
-							and default_opts .. " --no-ignore --hidden --glob '!.git/*'"
-						or ""
-					local text = require("fzf-lua.utils").get_visual_selection()
+				local is_config = vim.uv.cwd() == vim_path
+				if require("core.settings").search_backend == "fzf" then
 					require("fzf-lua").grep_project({
-						search = text,
-						rg_opts = opts,
+						search = require("fzf-lua.utils").get_visual_selection(),
+						rg_opts = "--column --line-number --no-heading --color=always --smart-case"
+							.. (is_config and " --no-ignore --hidden --glob '!.git/*'" or ""),
 					})
 				else
-					local opts = vim.fn.getcwd() == vim_path and { additional_args = { "--no-ignore" } } or {}
-					require("telescope-live-grep-args.shortcuts").grep_visual_selection(opts)
+					require("telescope-live-grep-args.shortcuts").grep_visual_selection(
+						is_config and { additional_args = { "--no-ignore" } } or {}
+					)
 				end
 			end)
 			:with_noremap()
@@ -174,8 +170,7 @@ local mappings = {
 			:with_silent()
 			:with_desc("tool: Resume last search"),
 		["n|<leader>fR"] = map_callback(function()
-				local search_backend = require("core.settings").search_backend
-				if search_backend == "fzf" then
+				if require("core.settings").search_backend == "fzf" then
 					require("fzf-lua").resume()
 				end
 			end)
@@ -244,6 +239,28 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("debug: Open REPL"),
+
+		--- Plugin: CodeCompanion and edgy
+		["n|<leader>cs"] = map_callback(function()
+				_select_chat_model()
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Select Chat Model"),
+		["nv|<leader>cc"] = map_callback(function()
+				require("edgy").toggle("right")
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Toggle CodeCompanion"),
+		["nv|<leader>ck"] = map_cr("CodeCompanionActions")
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: CodeCompanion Actions"),
+		["v|<leader>ca"] = map_cr("CodeCompanionChat Add")
+			:with_noremap()
+			:with_silent()
+			:with_desc("tool: Add selection to CodeCompanion Chat"),
 	},
 }
 
