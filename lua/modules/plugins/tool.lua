@@ -114,6 +114,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 			"DrKJeff16/project.nvim",
 			event = { "CursorHold", "CursorHoldI" },
 			config = require("tool.project"),
+			commit = "490f7b0b50b9532f880ba1d77a58a0e2672517f5",
 		},
 		{
 			"aaronhallaert/advanced-git-search.nvim",
