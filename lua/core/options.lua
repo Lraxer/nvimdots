@@ -10,7 +10,6 @@ local function load_options()
 		backupdir = global.cache_dir .. "/backup//,.",
 		backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
 		breakat = [[\ \	;:,!?@*-+/]],
-		clipboard = "unnamedplus",
 		cmdheight = 1, -- 0, 1, 2
 		cmdwinheight = 5,
 		complete = ".,w,b,k,kspell",
@@ -107,6 +106,11 @@ local function load_options()
 		undofile = true,
 		wrap = false,
 	}
+
+	-- Disable in WSL, this makes delete-related operations much slower
+	if not global.is_wsl then
+		options.clipboard = "unnamedplus"
+	end
 
 	local function isempty(s)
 		return s == nil or s == ""
